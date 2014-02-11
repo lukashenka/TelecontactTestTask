@@ -45,6 +45,14 @@ class Contact
 
 
 	/**
+	 * @var boolean
+	 *
+	 * @ORM\Column(name="locked", type="boolean")
+	 *
+	 */
+	private $locked = 0;
+
+	/**
 	 * @var datetime
 	 *
 	 * @ORM\Column(name="updated",type="datetime")
@@ -101,7 +109,7 @@ class Contact
 	/**
 	 * Get status
 	 *
-	 * @return integer
+	 * @return string
 	 */
 	public function getStatus()
 	{
@@ -141,6 +149,23 @@ class Contact
 
 
 		return $this->updated;
+	}
+
+	public function setLocked($state)
+	{
+		$this->locked = $state;
+	}
+
+	public function getLocked()
+	{
+		return $this->locked;
+	}
+
+	public function isLocked()
+	{
+
+		return $this->getLocked();
+
 	}
 
 

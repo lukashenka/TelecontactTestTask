@@ -19,8 +19,11 @@ class ContactRepository extends EntityRepository
 		$qb = $em->createQueryBuilder();
 		$qb->select('count(contact.id)');
 		$qb->from('TelecontactContactBundle:contact', 'contact');
-
+		$qb->where('contact.locked = 0');
+		$qb->andWhere('contact.state in (0,1,2,3,4,5)');
 		$count = $qb->getQuery()->getSingleScalarResult();
 		return (int)$count;
 	}
+
+
 }
