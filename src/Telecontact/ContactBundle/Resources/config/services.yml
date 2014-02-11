@@ -1,0 +1,7 @@
+parameters:
+#    telecontact_contact.example.class: Telecontact\ContactBundle\Example
+
+services:
+#    telecontact_contact.example:
+#        class: %telecontact_contact.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

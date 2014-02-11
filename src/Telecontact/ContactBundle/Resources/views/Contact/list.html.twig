@@ -1,0 +1,28 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Контакты</h3>
+    </div>
+    <div class="panel-content">
+
+        <div id="contacts">
+            <ul class="list-group">
+                {% for contact in contacts %}
+                    <li class="list-group-item">
+            <span class="contact-name">
+                {{ contact.name }}
+        </span>
+
+                        <div class="contact-status">
+                            {{ contact.status }}
+                        </div>
+                        <p>
+                            Последнее обновление в <span class="contact-last-update">
+                {{ contact.updated|date('H:m:s') }}         </span></p>
+                    </li>
+                {% else %}
+                    <div class="message error">Нет контактов</div>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>

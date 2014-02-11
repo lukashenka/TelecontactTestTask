@@ -1,0 +1,3 @@
+telecontact_contact_homepage:
+    pattern:  /
+    defaults: { _controller: TelecontactContactBundle:Default:index }
