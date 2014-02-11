@@ -20,9 +20,26 @@ class ContactRepository extends EntityRepository
 		$qb->select('count(contact.id)');
 		$qb->from('TelecontactContactBundle:contact', 'contact');
 		$qb->where('contact.locked = 0');
-		$qb->andWhere('contact.state in (0,1,2,3,4,5)');
+		$qb->andWhere('contact.status <> 6');
 		$count = $qb->getQuery()->getSingleScalarResult();
 		return (int)$count;
+	}
+
+	public function  getFreeContact()
+	{
+		$em = $this->getEntityManager();
+		$qb = $em->createQueryBuilder();
+		$qb->select('contact');
+		$qb->from('TelecontactContactBundle:contact', 'contact');
+		$qb->where('contact.locked = 0');
+		$qb->andWhere('contact.status <> 6');
+		$qb->setFirstResult(rand(0, $this->getFreeContactsCount() - 1));
+		$qb->setMaxResults(1);
+
+
+		$contact = $qb->getQuery()->getSingleResult();
+
+		return $contact;
 	}
 
 

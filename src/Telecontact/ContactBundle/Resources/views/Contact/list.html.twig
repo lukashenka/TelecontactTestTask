@@ -10,9 +10,9 @@
                     <li class="list-group-item">
             <span class="contact-name">
                 {{ contact.name }}
-                {% if contact.locked is true %}
-                Контакт уже занят оператором
-                {% elseif %}
+                {% if contact.locked %}
+                    Контакт уже занят оператором
+                {% endif %}
         </span>
 
                         <div class="contact-status">
