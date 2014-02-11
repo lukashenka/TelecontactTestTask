@@ -15,7 +15,7 @@ class PostAdmin extends Admin
 	{
 		$formMapper
 			->add('name', 'text', array('label' => 'Contact name'))
-			->add('status')
+			->add('status', 'text')
 			->add('updated');
 	}
 
@@ -32,8 +32,9 @@ class PostAdmin extends Admin
 	{
 		$listMapper
 			->addIdentifier('id')
-			->add('name')
+			->addIdentifier('name')
 			->add('status')
+			->add('locked')
 			->add('updated');
 	}
 }

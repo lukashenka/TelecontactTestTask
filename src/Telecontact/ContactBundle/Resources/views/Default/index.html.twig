@@ -58,10 +58,11 @@
 
                 $.get("/rest/contact/free", function (data) {
 
+                    var contact_id = data.id;
 
                     $("#contact-name").html(data.name);
 
-                    $.post("/rest/contact/status", { locked: "true" }, function (data) {
+                    $.post("/rest/contact/status", {id: contact_id, locked: "true" }, function (data) {
 
                         console.log(data);
 
