@@ -78,7 +78,7 @@
 
                 $.get("/rest/contact/free", function (data) {
 
-                    if (data.status = 'failed') {
+                    if (data.status === 'failed') {
                         $("#contact-name").html('Нет свободных контактов');
                     }
 
@@ -87,9 +87,9 @@
 
                         var contact_id = data.id;
 
-                    $("#contact-name").html(data.name);
+                        $("#contact-name").html(data.name);
 
-                    callToContact(contact_id);
+                        callToContact(contact_id);
                     }
 
                 });

@@ -38,7 +38,7 @@ class RestController extends FOSRestController
 
 
 			$contact->setLocked(true);
-			//$contact->setUpdated(new \DateTime('now'));
+			$contact->setUpdated(new \DateTime('now'));
 			$em->persist($contact);
 			$em->flush();
 		} else
