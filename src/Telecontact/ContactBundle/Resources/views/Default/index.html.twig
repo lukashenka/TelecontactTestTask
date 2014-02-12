@@ -22,7 +22,7 @@
     <div class="jumbotron">
         <h1>Оператор</h1>
 
-        <p class="text-info"> {{ freeContacts }} свободных контактов</p>
+        <p class="text-info"><span id="free-contacts-count">{{ freeContacts }}</span> свободных контактов</p>
 
         <p><a href="#" id="call-button" class="btn btn-primary btn-lg" role="button">Позвонить свободному</a></p>
 
@@ -36,19 +36,39 @@
                 </div>
             </div>
 
+            <div id="contact-response"></div>
+
         </div>
 
 
     </div>
     <script>
 
-        function animateProgressBar() {
+        function callToContact(contact_id) {
             var i = 1;
             var timerId = setInterval(function () {
                 $('#call-progress').attr('aria-valuenow', i).css('width', i + '%');
-                if (i == 100) clearInterval(timerId);
+                if (i == 100) {
+
+                    clearInterval(timerId);
+                    getContactStatus(contact_id);
+
+                    $("#call-progress").attr('aria-valuenow', 0).css('width', '0%');
+
+                }
                 i++;
-            }, 1);
+            }, 100);
+        }
+
+
+        function getContactStatus(contact_id) {
+            $.post("/rest/contacts/statuses", {id: contact_id, locked: "false" }, function (data) {
+
+                console.log(data);
+                $("#contact-response").html(data.contact_response);
+
+            });
+
         }
 
 
@@ -62,16 +82,27 @@
 
                     $("#contact-name").html(data.name);
 
-                    $.post("/rest/contact/status", {id: contact_id, locked: "true" }, function (data) {
+                    callToContact(contact_id);
 
-                        console.log(data);
-
-                    });
 
                 });
 
             });
 
+
+        });
+
+        $('document').ready(function () {
+
+            setInterval(function () {
+
+                $.get("/rest/contact/free/count", function (data) {
+
+                    $("#free-contacts-count").html(data.count);
+                    //  console.log(data.count+" free contacts");
+                });
+
+            }, 1000);
 
         });
 

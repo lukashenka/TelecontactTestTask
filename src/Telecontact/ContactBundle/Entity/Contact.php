@@ -120,6 +120,10 @@ class Contact
 
 			}
 
+			case Contact::NO_ANSWER:
+			{
+				return "Нет ответа";
+			}
 			case Contact::CALLBACK_LATER:
 			{
 				return "Просили перезвонить";

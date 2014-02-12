@@ -20,7 +20,7 @@ class ContactRepository extends EntityRepository
 		$qb->select('count(contact.id)');
 		$qb->from('TelecontactContactBundle:contact', 'contact');
 		$qb->where('contact.locked = 0');
-		$qb->andWhere('contact.status <> 6');
+		$qb->andWhere('contact.status NOT IN (5,1)');
 		$count = $qb->getQuery()->getSingleScalarResult();
 		return (int)$count;
 	}
@@ -32,7 +32,7 @@ class ContactRepository extends EntityRepository
 		$qb->select('contact');
 		$qb->from('TelecontactContactBundle:contact', 'contact');
 		$qb->where('contact.locked = 0');
-		$qb->andWhere('contact.status <> 6');
+		$qb->andWhere('contact.status <> 5');
 		$qb->setFirstResult(rand(0, $this->getFreeContactsCount() - 1));
 		$qb->setMaxResults(1);
 
