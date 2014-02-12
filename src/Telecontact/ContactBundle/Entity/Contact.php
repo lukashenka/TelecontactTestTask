@@ -111,9 +111,15 @@ class Contact
 	 *
 	 * @return string
 	 */
+
 	public function getStatus()
 	{
-		switch ($this->status) {
+		return $this->status;
+	}
+
+	public function getStatusString()
+	{
+		switch ($this->getStatus()) {
 			case Contact::BUSY:
 			{
 				return "Занят";
@@ -162,7 +168,7 @@ class Contact
 
 	public function getLocked()
 	{
-		return $this->locked;
+		return (boolean)($this->locked);
 	}
 
 	public function isLocked()

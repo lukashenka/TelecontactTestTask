@@ -62,7 +62,7 @@ class RestController extends FOSRestController
 		$contact->setUpdated(new \DateTime('now'));
 
 
-		$response = array('contact_response' => $contact->getStatus());
+		$response = array('contact_response' => $contact->getStatusString());
 
 		$em->persist($contact);
 		$em->flush();

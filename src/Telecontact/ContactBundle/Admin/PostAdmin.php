@@ -15,7 +15,7 @@ class PostAdmin extends Admin
 	{
 		$formMapper
 			->add('name', 'text', array('label' => 'Contact name'))
-			->add('status', 'text')
+			->add('status', 'integer')
 			->add('updated')
 			->add('locked', 'checkbox', array('required' => false));
 	}
