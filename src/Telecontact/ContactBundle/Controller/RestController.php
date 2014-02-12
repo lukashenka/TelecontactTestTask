@@ -28,20 +28,22 @@ class RestController extends FOSRestController
 		$contact = $this->getDoctrine()->getRepository('TelecontactContactBundle:Contact')->getFreeContact();
 
 
-		if (is_object($contact))
+		if (is_object($contact)) {
 			$data = array(
 
 				'id' => $contact->getId(),
 				'name' => $contact->getName(),
 				'status' => $contact->getStatus()
 			);
-		else
+
+
+			$contact->setLocked(true);
+			//$contact->setUpdated(new \DateTime('now'));
+			$em->persist($contact);
+			$em->flush();
+		} else
 			$data = array('status' => 'failed');
 
-		$contact->setLocked(true);
-		//$contact->setUpdated(new \DateTime('now'));
-		$em->persist($contact);
-		$em->flush();
 
 		$view = $this->view($data, 200);
 		return $this->handleView($view);
