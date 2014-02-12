@@ -28,11 +28,15 @@ class RestController extends FOSRestController
 		$contact = $this->getDoctrine()->getRepository('TelecontactContactBundle:Contact')->getFreeContact();
 
 
-		$data = array(
-			'id' => $contact->getId(),
-			'name' => $contact->getName(),
-			'status' => $contact->getStatus()
-		);
+		if (is_object($contact))
+			$data = array(
+
+				'id' => $contact->getId(),
+				'name' => $contact->getName(),
+				'status' => $contact->getStatus()
+			);
+		else
+			$data = array('status' => 'failed');
 
 		$contact->setLocked(true);
 

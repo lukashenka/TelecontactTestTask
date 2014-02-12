@@ -78,12 +78,19 @@
 
                 $.get("/rest/contact/free", function (data) {
 
-                    var contact_id = data.id;
+                    if (data.status = 'failed') {
+                        $("#contact-name").html('Нет свободных контактов');
+                    }
+
+
+                    else {
+
+                        var contact_id = data.id;
 
                     $("#contact-name").html(data.name);
 
                     callToContact(contact_id);
-
+                    }
 
                 });
 
