@@ -39,7 +39,7 @@ class RestController extends FOSRestController
 			$data = array('status' => 'failed');
 
 		$contact->setLocked(true);
-
+		$contact->setUpdated(new \DateTime('now'));
 		$em->persist($contact);
 		$em->flush();
 
