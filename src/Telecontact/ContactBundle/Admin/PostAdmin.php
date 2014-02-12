@@ -16,8 +16,8 @@ class PostAdmin extends Admin
 		$formMapper
 			->add('name', 'text', array('label' => 'Contact name'))
 			->add('status')
-			->add('updated')//->add('locked', null, array('required' => false))
-		;
+			->add('updated')
+			->add('locked', null, array('required' => false));
 	}
 
 	// Fields to be shown on filter forms
