@@ -46,6 +46,7 @@
 
         function callToContact(contact_id) {
             var i = 1;
+            $("#call-button").attr('disabled', 'disabled');
             var timerId = setInterval(function () {
                 $('#call-progress').attr('aria-valuenow', i).css('width', i + '%');
                 if (i == 100) {
@@ -54,6 +55,7 @@
                     getContactStatus(contact_id);
 
                     $("#call-progress").attr('aria-valuenow', 0).css('width', '0%');
+                    $("#call-button").removeAttr('disabled');
 
                 }
                 i++;
